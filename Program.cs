@@ -6,7 +6,7 @@ namespace Algoritmos_Básicos
     {
         static void Main(string[] args)
         {
-            int[] arr = { 12, 11, 13, 5, 6 };
+            int []arr = {64,25,12,22,11};
             Console.WriteLine(OrdenacaoPorSelecao(arr));
         }
 
@@ -39,7 +39,7 @@ namespace Algoritmos_Básicos
             return -1;
         }
 
-        public static int[] OrdenacaoPorInserção(int[] vetor) {
+        public static int[] OrdenacaoPorInsercao(int[] vetor) {
             
             for (int i = 1; i < vetor.Length; i++)
             {
@@ -56,6 +56,22 @@ namespace Algoritmos_Básicos
             return vetor;
         }
 
-        public static int[]
+        public static int[] OrdenacaoPorSelecao(int[] vetor) {
+
+            for (int i = 0; i < vetor.Length; i++) 
+            {
+                int menor_indice = i;
+                for (int j = i + 1; j < vetor.Length; j++) {
+                    if (vetor[j] < vetor[menor_indice])
+                        menor_indice = j;
+                }
+
+                var temp = vetor[menor_indice];
+                vetor[menor_indice] = vetor[i];
+                vetor[i] = temp ;
+            }
+
+            return vetor;
+        }
     }
 }
