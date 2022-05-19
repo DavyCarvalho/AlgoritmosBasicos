@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace Algoritmos_Básicos
 {
@@ -6,12 +6,13 @@ namespace Algoritmos_Básicos
     {
         static void Main(string[] args)
         {
-            
+            int[] arr = { 12, 11, 13, 5, 6 };
+            Console.WriteLine(OrdenacaoPorSelecao(arr));
         }
 
-        public static int BuscaSequencial(List<int> listaDeNumeros, int numeroProcurado) {
+        public static int BuscaSequencial(int[] vetor, int numeroProcurado) {
             var indice = 0;
-            foreach (var numeroDaLista in listaDeNumeros)
+            foreach (var numeroDaLista in vetor)
             {
                 if (numeroDaLista == numeroProcurado)
                     return indice;
@@ -20,22 +21,39 @@ namespace Algoritmos_Básicos
             return -1;
         }
 
-        public static int BuscaBinaria(List<int> listaDeNumeros, int numeroProcurado) {
+        public static int BuscaBinaria(int[] vetor, int numeroProcurado) {
             var posicao_inicial = 0;
-            var posicao_final = listaDeNumeros.Count - 1;
+            var posicao_final = vetor.Length - 1;
 
             while (posicao_inicial <= posicao_final) {
                 var posicao_meio = (posicao_inicial + posicao_final) / 2;
 
-                if (listaDeNumeros[posicao_meio] == numeroProcurado)
+                if (vetor[posicao_meio] == numeroProcurado)
                     return posicao_meio;
-                if (listaDeNumeros[posicao_meio] > numeroProcurado)
+                if (vetor[posicao_meio] > numeroProcurado)
                     posicao_final = posicao_meio - 1;
-                if (listaDeNumeros[posicao_meio] < numeroProcurado)
+                if (vetor[posicao_meio] < numeroProcurado)
                     posicao_inicial = posicao_meio + 1;
             }
 
             return -1;
+        }
+
+        public static int[] OrdenacaoPorSelecao(int[] vetor) {
+            
+            for (int i = 1; i < vetor.Length; i++)
+            {
+                var valorPosicaoAtual = vetor[i];
+                var posicaoAnteriorAAtual = i - 1;
+
+                while (posicaoAnteriorAAtual >= 0 && vetor[posicaoAnteriorAAtual] > valorPosicaoAtual) {
+                    vetor[posicaoAnteriorAAtual + 1] = vetor[posicaoAnteriorAAtual];
+                    posicaoAnteriorAAtual -= 1;
+                }
+                vetor[posicaoAnteriorAAtual + 1] = valorPosicaoAtual;
+            }
+
+            return vetor;
         }
     }
 }
