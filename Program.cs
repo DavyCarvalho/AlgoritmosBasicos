@@ -39,7 +39,7 @@ namespace Algoritmos_Básicos
             return -1;
         }
 
-        public static int[] OrdenacaoPorSelecao(int[] vetor) {
+        public static int[] OrdenacaoPorInserção(int[] vetor) {
             
             for (int i = 1; i < vetor.Length; i++)
             {
@@ -55,5 +55,7 @@ namespace Algoritmos_Básicos
 
             return vetor;
         }
+
+        public static int[]
     }
 }
