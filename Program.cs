@@ -73,5 +73,45 @@ namespace Algoritmos_Básicos
 
             return vetor;
         }
+
+        public static int[] QuickSort(int[] vetor, int leftIndex, int rightIndex) {
+            var i = leftIndex;
+            var j = rightIndex;
+            var pivo = vetor[leftIndex];
+
+            while (i <= j) 
+            {
+                while (vetor[i] < pivo) 
+                {
+                    i++;
+                }
+
+                while (vetor[j] > pivo) 
+                {
+                    j--;
+                }
+
+                if (i <= j)
+                {
+                    int temp = vetor[i];
+                    vetor[i] = vetor[j];
+                    vetor[j] = temp;
+                    i++;
+                    j--;
+                }
+            }
+
+            if (leftIndex < j) 
+            {
+                QuickSort(vetor, leftIndex, j);
+            }
+
+            if (i < rightIndex)
+            {
+                QuickSort(vetor, i, rightIndex);
+            }
+
+            return vetor;
+        }
     }
 }
